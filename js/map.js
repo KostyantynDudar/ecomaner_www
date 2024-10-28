@@ -19,7 +19,9 @@ async function loadTrashLocations() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+		// mode: 'cors'  // Убедитесь, что это используется при обращении через браузер
+
         });
 
         if (!response.ok) {
