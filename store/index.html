@@ -3,22 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин - Экоманер</title>
+    <title>Экоманер - Магазин</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../js/loadMenu.js" defer></script> <!-- Подключаем скрипт для загрузки меню -->
+    <style>
+        body, main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .menu-container {
+            max-width: 100%;
+            background-color: #333;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .menu a {
+            color: #00FF41;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        header, .section {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2, h3 {
+            color: #6ee86e;
+        }
+        .product-item {
+            margin: 20px 0;
+            background-color: #444;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .product-item h4 {
+            color: #ffcc00;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
+    <div class="menu-container">
+        <nav class="menu">
+            <a href="/index.html">Главная</a>
+            <a href="/map.html">Карта</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/about.html">О проекте</a>
+        </nav>
+    </div>
+
     <header>
         <h1>Экоманер</h1>
-        <div id="menu-container"></div> <!-- Контейнер для динамического меню -->
-    </header>
-    <main>
         <h2>Магазин</h2>
-        <p>Здесь вы можете приобрести товары и услуги.</p>
+        <p>Добро пожаловать в магазин Экоманер! Здесь вы можете приобрести NFT-модули для игры, товары с символикой проекта, а также приобрести токены Экоманера для участия в проекте.</p>
+    </header>
+
+    <main>
+        <!-- Раздел с сеткой по майнингу -->
+        <section class="section">
+            <h3>Сетка по майнингу и спонсорство сбора мусора</h3>
+            <div class="product-item">
+                <h4>Пример: Сетка по майнингу и спонсорство мусорных баков в Киеве</h4>
+                <p>Стоимость одного мусорного бака составляет 400 токенов Экоманера, что эквивалентно 400 долларам США.</p>
+                <p>За сутки один ящик приносит его владельцу 0,1 токена.</p>
+                <img src="../images/setka_ecomaner_kiev.jpg" alt="Сетка по майнингу в Киеве">
+            </div>
+        </section>
+
+        <!-- Раздел с NFT для игры -->
+        <section class="section">
+            <h3>NFT-модули для игры</h3>
+            <p>Эти NFT-модули помогают развивать ваш виртуальный город, улучшая переработку отходов, управление энергией и другие аспекты экологии.</p>
+            <div class="product-item">
+                <h4>Модуль Сортировочная станция</h4>
+                <p>Для эффективной сортировки мусора и повышения эколого-экономической устойчивости города.</p>
+            </div>
+            <div class="product-item">
+                <h4>Завод по переработке</h4>
+                <p>Перерабатывает вторсырье для производства вещей длительного использования и уменьшения количества отходов.</p>
+            </div>
+            <div class="product-item">
+                <h4>Биореактор</h4>
+                <p>Позволяет перерабатывать органические отходы в биоэнергию и гумус, улучшая экологический рейтинг города.</p>
+            </div>
+            <!-- Добавить другие NFT-модули, такие как учебные центры, торговые точки и прочее -->
+        </section>
+
+        <!-- Раздел с товарами с символикой проекта -->
+        <section class="section">
+            <h3>Товары с символикой Экоманер</h3>
+            <p>Поддержите проект, приобретая уникальные вещи с символикой Экоманер!</p>
+            <div class="product-item">
+                <h4>Кружка с логотипом Экоманер</h4>
+            </div>
+            <div class="product-item">
+                <h4>Футболка Экоманер</h4>
+            </div>
+            <div class="product-item">
+                <h4>Эко-сумка для покупок</h4>
+            </div>
+            <div class="product-item">
+                <h4>Ручка с логотипом Экоманер</h4>
+            </div>
+            <!-- Можно добавить другие товары, такие как кепки, блокноты и магниты -->
+        </section>
+
+        <!-- Раздел с покупкой токенов -->
+        <section class="section">
+            <h3>Покупка токенов Экоманер</h3>
+            <p>Токены Экоманера необходимы для участия в проекте и покупки некоторых игровых элементов. 1 токен стоит 1 доллар США. Покупка токенов будет возможна через внутреннюю биржу проекта, которая находится в разработке.</p>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Экоманер</p>
+        <p>&copy; 2024 Экоманер. Все права защищены.</p>
     </footer>
 </body>
 </html>

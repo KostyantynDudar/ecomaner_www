@@ -7,18 +7,130 @@
     <link rel="stylesheet" href="css/style.css"> <!-- Подключаем основной файл стилей -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Иконки Font Awesome -->
     <script src="js/loadMenu.js" defer></script> <!-- Скрипт для динамической загрузки меню -->
+    <style>
+        /* Центровка основного контента */
+        body, main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        /* Стиль секций для более красивого отображения */
+        section {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Центрирование текста в заголовке */
+        header h1 {
+            text-align: center;
+        }
+
+        /* Общий стиль для текста */
+        p {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <h1>Экоманер</h1>
+
+
+<button id="registerButton">Вход через MetaMask</button>
+
+<style>
+    /* Стили для кнопки регистрации */
+    #registerButton {
+        position: fixed;     /* Фиксированное положение на экране */
+        top: 20px;           /* Отступ сверху */
+        right: 20px;         /* Отступ справа */
+        padding: 10px 20px;  /* Внутренние отступы */
+        background-color: #4CAF50; /* Цвет кнопки */
+        color: white;        /* Цвет текста */
+        border: none;        /* Убираем границу */
+        border-radius: 5px;  /* Закругляем углы */
+        cursor: pointer;     /* Курсор в виде руки */
+        font-size: 16px;     /* Размер шрифта */
+        z-index: 1000;       /* Положение над другими элементами */
+    }
+
+    #registerButton:hover {
+        background-color: #45a049; /* Изменение цвета при наведении */
+    }
+</style>
+
+        
+<h1>Экоманер</h1>
         <div id="menu-container"></div> <!-- Контейнер для меню, который будет заполняться через loadMenu.js -->
     </header>
     <main>
         <h2>Добро пожаловать на сайт Экоманер!</h2>
-        <p>Здесь вы найдете информацию о проекте, его целях и возможностях.</p>
+        <p>Экоманер — это проект, в котором вы можете стать активным участником сохранения экологии. За каждое полезное действие вы получаете вознаграждение в виде токенов нашего проекта.</p>
+
+        <!-- Блок о Telegram-боте -->
+        <section id="telegram-bot-info">
+            <h3>Наш Telegram-бот</h3>
+            <p>Присоединяйтесь к нашему <a href="https://t.me/ecomaner_bot" target="_blank">Telegram-боту</a>, где вы сможете отправлять отчеты о своих экологических действиях. Просто сделайте фото или отправьте информацию о сортировке мусора, сдаче его в пункты приема или другом действии на благо экологии — и получайте токены за свой вклад.</p>
+        </section>
+
+        <!-- Описание схемы работы -->
+        <section id="how-it-works">
+            <h3>Как это работает</h3>
+            <ol>
+                <li>Зарегистрируйтесь через Telegram-бот и начинайте участвовать.</li>
+                <li>Выполняйте полезные для экологии действия: сортируйте мусор, фотографируйте свалки, сообщайте о пунктах приема отходов.</li>
+                <li>Отправьте доказательства выполненного действия через бота.</li>
+                <li>После проверки администратора, вам начисляются игровые баллы и NFT-токены.</li>
+                <li>Вы можете обменивать свои токены на фиатные деньги или криптовалюту.</li>
+            </ol>
+        </section>
     </main>
     <footer>
-        <p>&copy; 2024 Экоманер</p>
+        <p>&copy; 2024 Экоманер. Все права защищены.</p>
     </footer>
+
+    <!-- Скрипт для работы кнопки MetaMask -->
+    <script>
+        document.getElementById('registerButton').addEventListener('click', async () => {
+            // Проверяем, установлен ли MetaMask
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    // Запрашиваем доступ к кошелькам пользователя
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    const walletAddress = accounts[0];
+
+                    // Отправляем адрес кошелька на сервер
+                    const response = await fetch('http://localhost:3000/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ wallet_address: walletAddress }),
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert(`Успешная регистрация! ID пользователя: ${data.user.id}`);
+                    } else {
+                        alert(`Ошибка: ${data.message}`);
+                    }
+                } catch (error) {
+                    console.error('Ошибка при подключении MetaMask:', error);
+                    alert('Не удалось подключиться к MetaMask');
+                }
+            } else {
+                alert('MetaMask не установлен. Установите MetaMask для регистрации.');
+            }
+        });
+    </script>
+
+
 </body>
 </html>

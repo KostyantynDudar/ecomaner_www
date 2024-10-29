@@ -3,22 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Как это работает - Экоманер</title>
+    <title>Экоманер - Как это работает</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../js/loadMenu.js" defer></script> <!-- Подключаем скрипт для загрузки меню -->
+    <style>
+        /* Основные стили страницы */
+        body, main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        /* Стили для контейнера меню */
+        .menu-container {
+            max-width: 100%;
+            background-color: #333;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        /* Стили для меню */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            color: #00FF41;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #444;
+            color: #ffcc00;
+        }
+
+        header, section {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        h2, h3 {
+            color: #6ee86e;
+        }
+
+        ol, ul {
+            text-align: left;
+            margin: 10px;
+            padding-left: 20px;
+        }
+
+        .step {
+            margin: 15px 0;
+            background-color: #444;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .step img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Верхнее меню -->
+    <div class="menu-container">
+        <nav class="menu">
+            <a href="/index.html">Главная</a>
+            <a href="/map/index.html">Карта</a>
+            <a href="/faq/index.html">FAQ</a>
+            <a href="/about/index.html">О проекте</a>
+        </nav>
+    </div>
+
     <header>
         <h1>Экоманер</h1>
-        <div id="menu-container"></div> <!-- Контейнер для динамического меню -->
-    </header>
-    <main>
         <h2>Как это работает</h2>
-        <p>Здесь вы найдете описание работы проекта Экоманер.</p>
+        <p>В этом разделе подробно рассказывается, как работает система Экоманер. Следуйте инструкциям и алгоритмам ниже, чтобы понять, как вы можете участвовать и получать вознаграждение за свои действия в проекте.</p>
+    </header>
+
+    <!-- Основной раздел с пошаговыми алгоритмами -->
+    <main>
+        <section id="sorting">
+            <h3>Алгоритм "Сортировка"</h3>
+            <p>Следуйте этому алгоритму для участия в процессе сортировки мусора и получения вознаграждений:</p>
+            <ol>
+                <li class="step">
+                    <strong>Шаг 1:</strong> Соберите и отсортируйте мусор.
+                </li>
+                <li class="step">
+                    <strong>Шаг 2:</strong> Отправляйтесь в пункт приема мусора и сделайте фото места, где происходит сдача или покупка мусора.
+                    <img src="../images/sorting-dropoff-location.jpg" alt="Фото места сдачи или покупки мусора">
+                </li>
+                <li class="step">
+                    <strong>Шаг 3:</strong> Находясь возле пункта приема, сделайте фото отсортированного мусора.
+                    <img src="../images/sorting-step3.jpg" alt="Фото отсортированного мусора возле пункта приема">
+                </li>
+                <li class="step">
+                    <strong>Шаг 4:</strong> Сдайте мусор в пункт приема. Если вам выдали чек, сфотографируйте его вместе с деньгами.
+                    <img src="../images/sorting-check.jpg" alt="Фото чека и денег">
+                </li>
+                <li class="step">
+                    <strong>Шаг 5:</strong> Отправьте все фото, геолокацию и информацию в наш Telegram-бот для проверки.
+                </li>
+                <li class="step">
+                    <strong>Шаг 6:</strong> После верификации вы получите токены и игровые баллы на ваш счет.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Раздел с алгоритмом для фото свалки -->
+        <section id="dump-photo">
+            <h3>Алгоритм "Фото свалки"</h3>
+            <p>Инструкция по отправке информации о найденной свалке:</p>
+            <ol>
+                <li class="step">
+                    <strong>Шаг 1:</strong> Находясь возле свалки, сделайте фото и отправьте его в Telegram-бот вместе с геолокацией.
+                    <img src="../images/dump-photo-step1.jpg" alt="Фото свалки">
+                </li>
+                <li class="step">
+                    <strong>Шаг 2:</strong> После верификации администратора вы получите токены на свой счет.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Раздел о функционале голосования -->
+        <section id="voting">
+            <h3>Участие в голосовании</h3>
+            <p>Вы можете использовать свои токены для участия в голосовании и влиять на развитие проекта. Вот как это работает:</p>
+            <ul>
+                <li>Переходите в раздел голосования в личном кабинете.</li>
+                <li>Выбирайте инициативу или предложение, которое хотите поддержать.</li>
+                <li>Оплачивайте участие токенами и отслеживайте результаты.</li>
+            </ul>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Экоманер</p>
+        <p>&copy; 2024 Экоманер. Все права защищены.</p>
     </footer>
 </body>
 </html>
