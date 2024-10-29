@@ -97,39 +97,61 @@
     </footer>
 
     <!-- Скрипт для работы кнопки MetaMask -->
-    <script>
-        document.getElementById('registerButton').addEventListener('click', async () => {
-            // Проверяем, установлен ли MetaMask
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    // Запрашиваем доступ к кошелькам пользователя
-                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    const walletAddress = accounts[0];
+<script>
 
-                    // Отправляем адрес кошелька на сервер
-                    const response = await fetch('http://localhost:3000/api/register', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ wallet_address: walletAddress }),
-                    });
+// Скрипт для работы кнопки MetaMask
+document.getElementById('registerButton').addEventListener('click', async () => {
+    console.log("Нажата кнопка 'Вход через MetaMask'");
+    
+    // Проверяем, установлен ли MetaMask
+    if (typeof window.ethereum !== 'undefined') {
+        console.log("MetaMask найден. Запрашиваем доступ к кошелькам пользователя...");
+        
+        try {
+            // Запрашиваем доступ к кошелькам пользователя
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            const walletAddress = accounts[0];
+            console.log(`Получен адрес кошелька: ${walletAddress}`);
+            
+            // Отправляем адрес кошелька на сервер
+            console.log("Отправка адреса кошелька на сервер...");
+            const response = await fetch('https://ecomaner.com:444/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ wallet_address: walletAddress }),
+            });
+            
+            console.log("Ожидание ответа от сервера...");
+            const data = await response.json();
+            console.log("Ответ от сервера получен:", data);
 
-                    const data = await response.json();
-                    if (data.success) {
-                        alert(`Успешная регистрация! ID пользователя: ${data.user.id}`);
-                    } else {
-                        alert(`Ошибка: ${data.message}`);
-                    }
-                } catch (error) {
-                    console.error('Ошибка при подключении MetaMask:', error);
-                    alert('Не удалось подключиться к MetaMask');
+            if (data.success) {
+                if (data.message === 'Пользователь уже авторизован') {
+                    alert(`Пользователь авторизован! ID пользователя: ${data.user.id}`);
+                } else if (data.message === 'Успешная регистрация!') {
+                    alert(`Успешная регистрация! ID пользователя: ${data.user.id}`);
+                } else {
+                    alert(`Неизвестный ответ сервера: ${data.message}`);
                 }
             } else {
-                alert('MetaMask не установлен. Установите MetaMask для регистрации.');
+                alert(`Ошибка: ${data.message}`);
+                console.error("Ошибка при регистрации пользователя:", data.message);
             }
-        });
-    </script>
+        } catch (error) {
+            console.error('Ошибка при подключении MetaMask:', error);
+            alert('Не удалось подключиться к MetaMask');
+        }
+    } else {
+        console.warn("MetaMask не установлен");
+        alert('MetaMask не установлен. Установите MetaMask для регистрации.');
+    }
+});
+
+
+</script>
+
 
 
 </body>
