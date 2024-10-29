@@ -1,138 +1,144 @@
-/* Основные стили для всего сайта */
+/* Основные стили для текста */
 body {
-    background-color: #1a1a1a; /* Темный фон */
-    color: #00FF41; /* Ярко-зеленый текст, как в терминале */
-    font-family: 'Courier New', Courier, monospace;
+    background-color: #1c1c1c; /* Темный фон */
+    color: #e0e0e0; /* Светлый текст для хорошей читабельности */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
-/* Заголовок */
-header {
-    background-color: #111;
-    color: #f0f0f0;
-    padding: 10px;
+/* Стили заголовков */
+header h1 {
+    font-size: 2em;
+    color: #ffffff;
     text-align: center;
-    border-bottom: 2px solid #444;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
 }
 
-/* Сетка для меню с иконками */
-.icon-menu {
+/* Стиль для текста под заголовком */
+header p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #b0b0b0;
+    margin: 10px 0 20px 0;
+}
+
+/* Стили для навигации */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333333;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #00FF41; /* Ярко-зелёный цвет для главного меню, как у терминала */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s; /* Плавный переход цвета при наведении */
+}
+
+nav ul li a:hover {
+    color: #ffcc00; /* Золотистый цвет при наведении */
+    text-decoration: underline;
+}
+
+/* Секция с категориями */
+section {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #333333; /* Тёмно-серый фон для выделения секции */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    color: #ffffff;
+    font-size: 1.8em;
+}
+
+section p {
+    color: #cccccc;
+    margin-bottom: 15px;
+}
+
+/* Стили для списка категорий */
+section ul {
     list-style-type: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Уменьшенные размеры колонок */
-    gap: 10px; /* Уменьшенные отступы */
-    background-color: #111; /* Темный фон меню */
-    padding: 10px; /* Уменьшенные отступы */
-    border-radius: 8px;
-    border: 1px solid #333;
 }
 
-.icon-menu li {
-    background-color: #222;
-    border: 1px solid #444;
-    border-radius: 5px;
-    padding: 8px; /* Уменьшенные отступы */
-    text-align: center;
-    transition: background-color 0.3s, transform 0.3s;
+section ul li {
+    margin: 12px 0;
+    font-size: 1.1em;
 }
 
-.icon-menu li a {
-    color: #00FF41;
+section ul li a {
+    color: #89CFF0; /* Светло-голубой для ссылок категорий */
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.8em; /* Уменьшенный размер текста */
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.icon-menu li a i {
-    font-size: 1.2em; /* Уменьшенный размер иконки */
-    margin-bottom: 5px; /* Уменьшенный отступ */
-    color: #00FF41;
+section ul li a:hover {
+    color: #ffcc00; /* Золотистый цвет при наведении */
+    text-decoration: underline;
 }
 
-.icon-menu li a:hover {
-    background-color: #333;
-    border-color: #00FF41;
-    transform: scale(1.05); /* Небольшое увеличение при наведении */
-}
-
-/* Стиль для основного содержимого */
-main {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    background-color: #111;
-    color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
-}
-
-/* Карточки для информации */
-.card {
-    background-color: #222;
-    border: 1px solid #444;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 20px 0;
-    color: #f0f0f0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Кнопки */
-button {
-    background-color: #333;
-    border: 1px solid #00FF41;
-    color: #00FF41;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-family: inherit;
-    border-radius: 4px;
-    transition: all 0.3s;
-}
-
-button:hover {
-    background-color: #00FF41;
-    color: #111;
-}
-
-/* Стиль для таблиц и данных */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    color: #f0f0f0;
-}
-
-th, td {
-    border: 1px solid #444;
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #333;
-    color: #00FF41;
-}
-
-td.positive {
-    color: #00FF41; /* Зеленый цвет для положительных значений */
-}
-
-td.negative {
-    color: #FF3131; /* Красный цвет для отрицательных значений */
-}
-
-/* Футер */
+/* Стили для нижнего колонтитула */
 footer {
     text-align: center;
-    padding: 10px;
-    background-color: #111;
-    color: #00FF41;
-    border-top: 1px solid #444;
+    padding: 20px;
+    background-color: #222222;
+    color: #66ff66;
     margin-top: 20px;
+}
+
+footer a {
+    color: #66ff66;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    section {
+        padding: 20px;
+    }
+    
+    section ul li {
+        font-size: 1em;
+    }
 }
