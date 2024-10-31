@@ -29,12 +29,14 @@ async function loadTrashLocations() {
         const data = await response.json();
         console.log('Полученные данные:', data);
 
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
             const bounds = L.latLngBounds(); // для автоматической подгонки области карты
             data.forEach(location => {
                 const { latitude, longitude, comments } = location;
                 const lat = parseFloat(latitude);
                 const lng = parseFloat(longitude);
+
+                console.log(`Добавление метки на карту: ${lat}, ${lng}`); // Отладочный вывод
 
                 if (!isNaN(lat) && !isNaN(lng)) {
                     const marker = L.marker([lat, lng])
@@ -47,13 +49,15 @@ async function loadTrashLocations() {
                 }
             });
             map.fitBounds(bounds); // подгоняем карту к границам с маркерами
+            map.invalidateSize(); // Принудительное обновление размера карты
         } else {
-            console.error('Ожидался массив, получено:', typeof data);
+            console.error('Ожидался массив с данными, но массив пустой или не был получен.');
         }
     } catch (error) {
         console.error('Ошибка загрузки данных о свалках:', error);
     }
 }
+
 
 // Вызываем функцию загрузки данных после инициализации карты
 loadTrashLocations();
