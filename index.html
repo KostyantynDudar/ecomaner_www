@@ -8,76 +8,79 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Иконки Font Awesome -->
     <script src="js/loadMenu.js" defer></script> <!-- Скрипт для динамической загрузки меню -->
     <style>
-        /* Центровка основного контента */
-        body, main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        /* Стиль секций для более красивого отображения */
-        section {
+        /* Стили для верхней панели */
+        #top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             background-color: #333;
-            color: #fff;
-            padding: 20px;
-            margin: 10px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 600px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+            font-size: 14px;
         }
 
-        /* Центрирование текста в заголовке */
-        header h1 {
-            text-align: center;
+        /* Отступ для основного содержимого, чтобы не пересекаться с верхней панелью */
+        body {
+            padding-top: 60px; /* Добавляем отступ сверху */
         }
 
-        /* Общий стиль для текста */
-        p {
-            text-align: center;
+        /* Стили для блока с кнопками авторизации в main */
+        #auth-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        #auth-buttons-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        #auth-buttons-container button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 
 <body>
+    <!-- Горизонтальная панель в самом верху сайта -->
+    <div id="top-bar">
+        Экоманер — Платформа экологических инициатив
+    </div>
+
+    <!-- Основной контент сайта -->
     <header>
-
-
-<button id="registerButton">Вход через MetaMask</button>
-
-<style>
-    /* Стили для кнопки регистрации */
-    #registerButton {
-        position: fixed;     /* Фиксированное положение на экране */
-        top: 20px;           /* Отступ сверху */
-        right: 20px;         /* Отступ справа */
-        padding: 10px 20px;  /* Внутренние отступы */
-        background-color: #4CAF50; /* Цвет кнопки */
-        color: white;        /* Цвет текста */
-        border: none;        /* Убираем границу */
-        border-radius: 5px;  /* Закругляем углы */
-        cursor: pointer;     /* Курсор в виде руки */
-        font-size: 16px;     /* Размер шрифта */
-        z-index: 1000;       /* Положение над другими элементами */
-    }
-
-    #registerButton:hover {
-        background-color: #45a049; /* Изменение цвета при наведении */
-    }
-</style>
-
-        
-<h1>Экоманер</h1>
-        <div id="menu-container"></div> <!-- Контейнер для меню, который будет заполняться через loadMenu.js -->
+        <h1>Экоманер</h1>
+        <div id="menu-container"></div> <!-- Контейнер для меню -->
     </header>
+
     <main>
+        <!-- Блок с кнопками авторизации -->
+        <div id="auth-buttons-container">
+            <button id="registerButton">Вход через MetaMask</button>
+            <button id="emailRegisterButton">Регистрация по Email</button>
+            <button id="emailLoginButton">Вход по Email</button>
+        </div>
+
         <h2>Добро пожаловать на сайт Экоманер!</h2>
         <p>Экоманер — это проект, в котором вы можете стать активным участником сохранения экологии. За каждое полезное действие вы получаете вознаграждение в виде токенов нашего проекта.</p>
 
         <!-- Блок о Telegram-боте -->
         <section id="telegram-bot-info">
             <h3>Наш Telegram-бот</h3>
-            <p>Присоединяйтесь к нашему <a href="https://t.me/ecomaner_bot" target="_blank">Telegram-боту</a>, где вы сможете отправлять отчеты о своих экологических действиях. Просто сделайте фото или отправьте информацию о сортировке мусора, сдаче его в пункты приема или другом действии на благо экологии — и получайте токены за свой вклад.</p>
+            <p>Присоединяйтесь к нашему <a href="https://t.me/ecomaner_bot" target="_blank">Telegram-боту</a>, где вы сможете отправлять отчеты о своих экологических действиях.</p>
         </section>
 
         <!-- Описание схемы работы -->
@@ -92,9 +95,11 @@
             </ol>
         </section>
     </main>
+    
     <footer>
         <p>&copy; 2024 Экоманер. Все права защищены.</p>
     </footer>
+
 
     <!-- Скрипт для работы кнопки MetaMask -->
 <script>
@@ -111,7 +116,7 @@ document.getElementById('registerButton').addEventListener('click', async () => 
             // Запрашиваем доступ к кошелькам пользователя
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
             const walletAddress = accounts[0];
-            console.log(`Получен адрес кошелька: ${walletAddress}`);
+            console.log(Получен адрес кошелька: ${walletAddress});
             
             // Отправляем адрес кошелька на сервер
             console.log("Отправка адреса кошелька на сервер...");
@@ -129,14 +134,14 @@ document.getElementById('registerButton').addEventListener('click', async () => 
 
             if (data.success) {
                 if (data.message === 'Пользователь уже авторизован') {
-                    alert(`Пользователь авторизован! ID пользователя: ${data.user.id}`);
+                    alert(Пользователь авторизован! ID пользователя: ${data.user.id});
                 } else if (data.message === 'Успешная регистрация!') {
-                    alert(`Успешная регистрация! ID пользователя: ${data.user.id}`);
+                    alert(Успешная регистрация! ID пользователя: ${data.user.id});
                 } else {
-                    alert(`Неизвестный ответ сервера: ${data.message}`);
+                    alert(Неизвестный ответ сервера: ${data.message});
                 }
             } else {
-                alert(`Ошибка: ${data.message}`);
+                alert(Ошибка: ${data.message});
                 console.error("Ошибка при регистрации пользователя:", data.message);
             }
         } catch (error) {
@@ -151,6 +156,49 @@ document.getElementById('registerButton').addEventListener('click', async () => 
 
 
 </script>
+
+<script>
+// Обработчик для кнопки "Регистрация по Email"
+document.getElementById('emailRegisterButton').addEventListener('click', async () => {
+    const email = prompt('Введите ваш Email для регистрации:');
+    const password = prompt('Введите ваш пароль:');
+    if (email && password) {
+        try {
+            const response = await fetch('https://ecomaner.com:444/api/register-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await response.json();
+            alert(data.message || 'Регистрация успешна!');
+        } catch (error) {
+            console.error('Ошибка при регистрации:', error);
+            alert('Ошибка при регистрации. Попробуйте снова.');
+        }
+    }
+});
+
+// Обработчик для кнопки "Вход по Email"
+document.getElementById('emailLoginButton').addEventListener('click', async () => {
+    const email = prompt('Введите ваш Email:');
+    const password = prompt('Введите ваш пароль:');
+    if (email && password) {
+        try {
+            const response = await fetch('https://ecomaner.com:444/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await response.json();
+            alert(data.message || 'Вход выполнен успешно!');
+        } catch (error) {
+            console.error('Ошибка при входе:', error);
+            alert('Ошибка при входе. Попробуйте снова.');
+        }
+    }
+});
+</script>
+
 
 
 
