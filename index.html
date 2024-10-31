@@ -60,6 +60,11 @@
     <!-- Горизонтальная панель в самом верху сайта -->
     <div id="top-bar">
         Экоманер — Платформа экологических инициатив
+
+    <span id="pilot-dashboard-link" style="display: none; margin-left: 20px; cursor: pointer; color: #4CAF50;">
+        Кабина пилота
+    </span>
+
     </div>
 
     <!-- Основной контент сайта -->
@@ -70,13 +75,13 @@
 
     <main>
         <!-- Блок с кнопками авторизации -->
-        <div id="auth-buttons-container">
-            <button id="registerButton">Вход через MetaMask</button>
-            <button id="emailRegisterButton">Регистрация по Email</button>
-            <button id="emailLoginButton">Вход по Email</button>
-            <button id="logoutButton" onclick="logout()">Выйти</button>
-        </div>
-
+<div id="auth-buttons-container">
+    <button id="registerButton">Вход через MetaMask</button>
+    <button id="emailRegisterButton">Регистрация по Email</button>
+    <button id="emailLoginButton">Вход по Email</button>
+    <button id="pilotDashboardButton" style="display: none;">Кабина пилота</button> <!-- Добавляем кнопку -->
+    <button id="logoutButton" onclick="logout()">Выйти</button>
+</div>
         <h2>Добро пожаловать на сайт Экоманер!</h2>
         <p>Экоманер — это проект, в котором вы можете стать активным участником сохранения экологии. За каждое полезное действие вы получаете вознаграждение в виде токенов нашего проекта.</p>
 

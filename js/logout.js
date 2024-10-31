@@ -1,18 +1,16 @@
-// logout.js
-
 // Функция для выхода
 async function logout() {
     const token = localStorage.getItem('authToken'); // Получаем токен из localStorage
-    console.log("Токен из localStorage:", token); // Проверка наличия токена
+    console.log("Токен из localStorage:", token);
 
     if (!token) {
         alert('Вы не авторизованы');
-        console.log("Токен отсутствует, пользователь не авторизован."); // Сообщение об отсутствии токена
+        console.log("Токен отсутствует, пользователь не авторизован.");
         return;
     }
 
     try {
-        console.log("Отправка запроса на выход..."); // Уведомление о начале запроса на выход
+        console.log("Отправка запроса на выход...");
         const response = await fetch('https://ecomaner.com:444/api/logout', {
             method: 'POST',
             headers: {
@@ -21,34 +19,61 @@ async function logout() {
             }
         });
 
-        console.log("Ответ от сервера получен:", response); // Проверка, получен ли ответ
+        console.log("Ответ от сервера получен:", response);
         const data = await response.json();
-        console.log("Данные ответа от сервера:", data); // Вывод данных ответа сервера
+        console.log("Данные ответа от сервера:", data);
 
         if (data.success) {
             localStorage.removeItem('authToken'); // Удаляем токен после выхода
-            console.log("Токен удален из localStorage"); // Уведомление об удалении токена
-            alert(data.message); // Сообщение "Выход выполнен успешно"
-            console.log("Перенаправление на главную страницу"); // Уведомление о перенаправлении
-            window.location.href = '/index.html'; // Перенаправление на главную страницу
+            console.log("Токен удален из localStorage");
+            alert(data.message);
+            console.log("Перенаправление на главную страницу");
+            window.location.href = '/index.html';
         } else {
             alert('Ошибка при выходе');
-            console.error("Ошибка при выходе:", data.message); // Сообщение об ошибке выхода
+            console.error("Ошибка при выходе:", data.message);
         }
     } catch (error) {
-        console.error('Ошибка при выходе (try-catch):', error); // Сообщение об ошибке при выполнении запроса
+        console.error('Ошибка при выходе (try-catch):', error);
         alert('Ошибка при выходе. Попробуйте снова.');
     }
 }
 
-// Проверка состояния авторизации и отображение кнопки "Выйти"
+// Проверка состояния авторизации и управление отображением кнопок
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('authToken');
+    const registerButton = document.getElementById('registerButton');
+    const emailRegisterButton = document.getElementById('emailRegisterButton');
+    const emailLoginButton = document.getElementById('emailLoginButton');
+    const pilotDashboardButton = document.getElementById('pilotDashboardButton');
     const logoutButton = document.getElementById('logoutButton');
 
     if (token) {
-        logoutButton.style.display = 'block'; // Показываем кнопку, если токен есть
+        console.log("Токен найден, показываем 'Кабина пилота' и 'Выйти', скрываем 'Регистрация' и 'Вход'");
+        
+        // Показываем "Кабина пилота" и "Выйти"
+        pilotDashboardButton.style.display = 'block';
+        logoutButton.style.display = 'block';
+
+        // Скрываем кнопки регистрации и входа
+        registerButton.style.display = 'none';
+        emailRegisterButton.style.display = 'none';
+        emailLoginButton.style.display = 'none';
+
+        // Обработчик для перехода в "Кабину пилота"
+        pilotDashboardButton.onclick = () => {
+            window.location.href = '/pilot-dashboard.html'; // Путь к странице "Кабина пилота"
+        };
     } else {
-        logoutButton.style.display = 'none';  // Скрываем кнопку, если токена нет
+        console.log("Токен не найден, скрываем 'Кабина пилота' и 'Выйти'");
+        
+        // Скрываем "Кабина пилота" и "Выйти"
+        pilotDashboardButton.style.display = 'none';
+        logoutButton.style.display = 'none';
+
+        // Показываем кнопки регистрации и входа
+        registerButton.style.display = 'block';
+        emailRegisterButton.style.display = 'block';
+        emailLoginButton.style.display = 'block';
     }
 });
